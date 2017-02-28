@@ -1,0 +1,134 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<style>
+    .mySlides {
+        display: none;
+    }
+
+    .w3-left, .w3-right, .w3-badge {
+        cursor: pointer;
+    }
+
+    .w3-badge {
+        height: 13px;
+        width: 13px;
+        padding: 0;
+    }
+    img {
+    max-width: 100% !important;
+    max-height: 100% !important;
+    }
+    #Overlay {
+        z-index:99; 
+        color: white;
+        font-size: 20px;
+        transition: top 0.25s;
+        margin: 0;
+        top: 40%;
+        max-width: 63em;
+        padding: .75em .5em 0;
+        position: absolute;
+        left: -.5em;
+        right: -.5em;
+        z-index: 4;
+    }
+</style>
+
+<div class="w3-content w3-display-container">
+    <div id="Overlay">
+        <center>
+            <a class="btn btn-warning" href="/Book">Book Reservation &raquo;</a>
+            <p style="text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px gray;">
+            <br />
+            Come and stay in the finest rooms at Contoso Hotel!</p>
+        </center>
+    </div>
+    <img class="mySlides" src="http://cache.marriott.com/propertyimages/s/seasm/phototour/seasm_phototour58.jpg?interpolation=progressive-bilinear&downsize=*:823px">
+    <img class="mySlides" src="http://cache.marriott.com/propertyimages/s/seasm/phototour/seasm_phototour81.jpg?interpolation=progressive-bilinear&downsize=*:823px">
+    <img class="mySlides" src="http://cache.marriott.com/propertyimages/s/seasm/phototour/seasm_phototour59.jpg?interpolation=progressive-bilinear&downsize=*:823px">
+    <img class="mySlides" src="http://cache.marriott.com/propertyimages/s/seasm/phototour/seasm_phototour56.jpg?interpolation=progressive-bilinear&downsize=*:823px">
+    <img class="mySlides" src="http://cache.marriott.com/propertyimages/s/seasm/phototour/seasm_phototour73.jpg?interpolation=progressive-bilinear&downsize=*:823px">
+    <img class="mySlides" src="http://cache.marriott.com/propertyimages/s/seasm/phototour/seasm_phototour72.jpg?interpolation=progressive-bilinear&downsize=*:823px">
+    <img class="mySlides" src="http://cache.marriott.com/propertyimages/s/seasm/phototour/seasm_phototour76.jpg?interpolation=progressive-bilinear&downsize=*:823px">
+    <img class="mySlides" src="http://cache.marriott.com/propertyimages/s/seasm/phototour/seasm_phototour79.jpg?interpolation=progressive-bilinear&downsize=*:823px">
+    <div class="w3-center w3-display-bottommiddle" style="width:100%">
+        <div class="w3-left w3-padding-left w3-hover-text-khaki" onclick="plusDivs(-1)">&#10094;</div>
+        <div class="w3-right w3-padding-right w3-hover-text-khaki" onclick="plusDivs(1)">&#10095;</div>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(4)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(5)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(6)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(7)"></span>
+        <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(8)"></span>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Getting started</h2>
+        <p>
+            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+            enables a clean separation of concerns and gives you full control over markup
+            for enjoyable, agile development.
+        </p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Get more libraries</h2>
+        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Web Hosting</h2>
+        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+<script>
+    var slideIndex = 0;
+    showDivs(slideIndex);
+
+    function plusDivs(n) {
+        showDivs(slideIndex += n);
+    }
+
+    function currentDiv(n) {
+        showDivs(slideIndex = n);
+    }
+
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" w3-white", "");
+        }
+        x[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " w3-white";
+    }
+
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > x.length) { slideIndex = 1 }
+        x[slideIndex - 1].style.display = "block";
+        currentDiv(slideIndex);
+        setTimeout(carousel, 7500); // Change image every 7.5 seconds
+    }
+</script>
