@@ -8,12 +8,25 @@ using System.Web;
 using System.Web.Mvc;
 using ContosoHotel.DAL;
 using ContosoHotel.Models;
+using Microsoft.AspNet.Identity;
 
 namespace ContosoHotel.Controllers
 {
     public class ReservationController : Controller
     {
         private HotelContext db = new HotelContext();
+
+        // GET: Reservation
+        [Authorize]
+        public ActionResult MyReservations()
+        {
+            var userId = User.Identity.GetUserId();
+            var userHash = userId.GetHashCode();
+            var reservations = from record in db.Reservations
+                               where record.Guest.Identifier == userHash
+                               select record;
+            return View(reservations.ToList());
+        }
 
         // GET: Reservation
         public ActionResult Index()

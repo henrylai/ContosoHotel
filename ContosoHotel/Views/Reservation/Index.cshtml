@@ -12,7 +12,13 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Guest.Identifier)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Guest.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Room.RoomID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Room.RoomType)
@@ -23,7 +29,13 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Guest.Identifier)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Guest.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.RoomID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Room.RoomType)

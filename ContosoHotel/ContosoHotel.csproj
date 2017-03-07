@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201703062243242_AddedRoomPrice.Designer.cs">
       <DependentUpon>201703062243242_AddedRoomPrice.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201703070551458_GuestIdentifier.cs" />
+    <Compile Include="Migrations\201703070551458_GuestIdentifier.Designer.cs">
+      <DependentUpon>201703070551458_GuestIdentifier.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Guest.cs" />
@@ -310,6 +314,7 @@
     <Content Include="Views\Reservation\Edit.cshtml" />
     <Content Include="Views\Reservation\Index.cshtml" />
     <Content Include="Views\Room\Confirm.cshtml" />
+    <Content Include="Views\Reservation\MyReservations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -334,6 +339,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201703062243242_AddedRoomPrice.resx">
       <DependentUpon>201703062243242_AddedRoomPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201703070551458_GuestIdentifier.resx">
+      <DependentUpon>201703070551458_GuestIdentifier.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ContosoHotel.Models.Reservation>
+
+@{
+    ViewBag.Title = "My Reservations";
+}
+
+<h2>My Reservations</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Reservation ID
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Guest.Name)
+        </th>
+        <th>
+            Room Number
+        </th>
+        <th>
+            Room Type
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReservationID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Guest.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.RoomID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Room.RoomType)
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.ReservationID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ReservationID })
+        </td>
+    </tr>
+}
+
+</table>

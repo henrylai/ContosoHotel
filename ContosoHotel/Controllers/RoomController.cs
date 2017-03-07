@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ContosoHotel.DAL;
 using ContosoHotel.Models;
 using System.Diagnostics;
+using Microsoft.AspNet.Identity;
 
 namespace ContosoHotel.Controllers
 {
@@ -45,15 +46,29 @@ namespace ContosoHotel.Controllers
         public ActionResult Reserve([Bind(Include = "RoomID,RoomType,Vacancy,Price")] Room room, string firstName, string lastName, string email, string address, string phone)
         {
             Debug.WriteLine(firstName + lastName + email + address + phone);
-            
+            var userId = User.Identity.GetUserId();
+
             if (ModelState.IsValid)
             {
-                
                 db.Entry(room).State = EntityState.Modified;
-                //room.Vacancy = false;
+                room.Vacancy = false;
+                Guest guest = new Guest { Identifier = userId.GetHashCode(), Name = firstName + " " + lastName, Email = email, Phone = phone, Address = address };
+                Reservation reservation = new Reservation { Guest = guest, Room = room };
+                db.Guests.Add(guest);
+                db.Reservations.Add(reservation);
                 db.SaveChanges();
-                return RedirectToAction("Confirm", new { roomID = room.RoomID, roomType = room.RoomType, roomPrice = room.Price,
-                    guestEmail = email, guestPhone = phone, guestName = firstName + " " + lastName, guestAddress = address });
+
+                return RedirectToAction("Confirm", new
+                {
+                    confirmationID = reservation.ReservationID,
+                    roomID = room.RoomID,
+                    roomType = room.RoomType,
+                    roomPrice = room.Price,
+                    guestEmail = email,
+                    guestPhone = phone,
+                    guestName = firstName + " " + lastName,
+                    guestAddress = address
+                });
             }
             return View(room);
         }

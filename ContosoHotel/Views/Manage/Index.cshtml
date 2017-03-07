@@ -12,8 +12,6 @@
     <h4>Change your account settings</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>Number:</dt>
-        <dd>@Model.PhoneNumber</dd>
         <dt>Password:</dt>
         <dd>
             [
@@ -27,6 +25,12 @@
             }
             ]
         </dd>
-        
+        <dt>
+            Reservations:
+        </dt>
+        <dd>
+            @Html.ActionLink("View Reservations", "MyReservations", "Reservation")
+        </dd>
     </dl>
+
 </div>

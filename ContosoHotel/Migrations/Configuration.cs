@@ -28,13 +28,13 @@ namespace ContosoHotel.Migrations
             context.SaveChanges();
             var rooms = new List<Room>
             {
-            new Room{RoomID=105,Vacancy=true,RoomType="King", Price=159.99},
+            /*new Room{RoomID=105,Vacancy=true,RoomType="King", Price=159.99},
             new Room{RoomID=110,Vacancy=true,RoomType="Queen", Price=134.99},
             new Room{RoomID=115,Vacancy=true,RoomType="Queen", Price=134.99},
             new Room{RoomID=205,Vacancy=true,RoomType="King", Price=159.99},
             new Room{RoomID=210,Vacancy=true,RoomType="Twin", Price=119.99},
             new Room{RoomID=215,Vacancy=true,RoomType="Twin", Price=119.99},
-            new Room{RoomID=310,Vacancy=true,RoomType="Single", Price=99.99}
+            new Room{RoomID=310,Vacancy=true,RoomType="Single", Price=99.99}*/
             };
             rooms.ForEach(s => context.Rooms.Add(s));
             context.SaveChanges();

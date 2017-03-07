@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+
+<!DOCTYPE html>
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
 <html>
 <head>
@@ -23,8 +25,17 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Book", "Book", "Room")</li>
+                    @if (Request.IsAuthenticated && !User.Identity.GetUserName().Equals("admin@contosohotel.com"))
+                    {
+                        <li>@Html.ActionLink("My Reservations", "MyReservations", "Reservation")</li>
+                    }
+                    @if (Request.IsAuthenticated && User.Identity.GetUserName().Equals("admin@contosohotel.com"))
+                    {
+                        <li>@Html.ActionLink("[ADMIN] Guests", "Index", "Guest")</li>
+                        <li>@Html.ActionLink("[ADMIN] Rooms", "Index", "Room")</li>
+                        <li>@Html.ActionLink("[ADMIN] Reservations", "Index", "Reservation")</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +45,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Contoso Hotel</p>
         </footer>
     </div>
 

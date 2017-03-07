@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ContosoHotel.Models;
+using ContosoHotel.DAL;
 
 namespace ContosoHotel.Controllers
 {
@@ -15,6 +16,7 @@ namespace ContosoHotel.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private HotelContext db = new HotelContext();
 
         public ManageController()
         {
@@ -64,15 +66,24 @@ namespace ContosoHotel.Controllers
                 : "";
 
             var userId = User.Identity.GetUserId();
+            var userHash = userId.GetHashCode();
+
+            // Query for all reservation with guest identifier == userID hash
+            var reservations = from record in db.Reservations
+                               where record.Guest.Identifier == userHash
+                               select record;
 
             var model = new IndexViewModel
             {
+                UserID = userId,
                 HasPassword = HasPassword(),
                 PhoneNumber = UserManager.FindById(User.Identity.GetUserId()).Number,
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
                 Logins = await UserManager.GetLoginsAsync(userId),
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
+            ViewData["reservations"] = reservations.ToList();
+
             return View(model);
         }
 

@@ -4,11 +4,23 @@
     ViewBag.Title = "Book a Reservation";
 }
 
-<h2>Book Reservation</h2>
+
+<style>
+    .bg-image-blur {
+        -moz-box-shadow: 3px 6px 9px rgba(0,0,0,.5);
+        -webkit-box-shadow: 3px 6px 9px rgba(0,0,0,.5);
+        box-shadow: 3px 6px 9px rgba(0,0,0,.5);
+        border-radius: 10px;
+    }
+</style>
+
+<h2>Book a Reservation</h2>
 
 
 <table class="table">
     <tr>
+        <th>
+        </th>
         <th>
             Room Number
         </th>
@@ -16,34 +28,100 @@
             Room Type
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            Room Details
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)/Day
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoomType)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @{ if (item.Vacancy)
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.RoomType.Equals("King"))
                 {
-                    @Html.ActionLink(HttpUtility.HtmlDecode("Book Room &raquo;"), "Reserve", new { id = item.RoomID }, new { @class = "btn btn-warning" })
+                    <img class="bg-image-blur" src="http://ww1.prweb.com/prfiles/2009/07/19/280948/StandardKingGuestroom.jpg" width="100px" />
+                }
+                else if (item.RoomType.Equals("Queen"))
+                {
+                    <img class="bg-image-blur" src="https://images.trvl-media.com/hotels/1000000/160000/156000/155950/155950_175_z.jpg" width="100px" />
+                }
+                else if (item.RoomType.Equals("Twin"))
+                {
+                    <img class="bg-image-blur" src="http://media-cache-ec0.pinimg.com/736x/f6/0e/31/f60e313da8be6e6302552727dab7432f.jpg" width="100px" />
                 }
                 else
                 {
-                    <a class="btn btn-warning disabled">Unavailable &raquo;</a>
+                    <img class="bg-image-blur" src="http://4.bp.blogspot.com/_9N38TkeIaGM/S-VpVKhcMWI/AAAAAAAAATE/HE1Gf_hxVxc/s1600/single_room.jpg" width="100px" />
                 }
-            }
-        </td>
-    </tr>
-}
+            </td>
+            <td>
+                <h2>@Html.DisplayFor(modelItem => item.RoomID)</h2>
+            </td>
+            <td>
+                <h3>@Html.DisplayFor(modelItem => item.RoomType)</h3>
+            </td>
+            <td>
+                @if (item.RoomType.Equals("King"))
+                {
+                    <ul style="font-size:8pt;">
+                        <li>One King-sized Bed</li>
+                        <li>Free WiFi</li>
+                        <li>Free Breakfast</li>
+                        <li>Refrigerator</li>
+                        <li>Air Conditioning</li>
+                        <li>Flat-screen TV</li>
+                    </ul>
+                }
+                else if (item.RoomType.Equals("Queen"))
+                {
+                    <ul style="font-size:8pt;">
+                        <li>One Queen-sized Bed</li>
+                        <li>Free WiFi</li>
+                        <li>Free Breakfast</li>
+                        <li>Refrigerator</li>
+                        <li>Air Conditioning</li>
+                        <li>Flat-screen TV</li>
+                    </ul>
+                }
+                else if (item.RoomType.Equals("Twin"))
+                {
+                    <ul style="font-size:8pt;">
+                        <li>Two Twin-sized Bed</li>
+                        <li>Free WiFi</li>
+                        <li>Refrigerator</li>
+                        <li>Air Conditioning</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul style="font-size:8pt;">
+                        <li>One Twin-sized Bed</li>
+                        <li>Free WiFi</li>
+                        <li>Refrigerator</li>
+                        <li>Air Conditioning</li>
+                    </ul>
+                }
+            </td>
+
+            <td>
+                <h2 class="fixed">$@Html.DisplayFor(modelItem => item.Price)<small class="absolute">/Day </small></h2>
+            </td>
+
+            <td>
+                @{ if (item.Vacancy)
+                {
+                        @Html.ActionLink(HttpUtility.HtmlDecode("Book Room &raquo;"), "Reserve", new { id = item.RoomID }, new { @class = "btn btn-warning" })
+                    }
+                    else
+                    {
+                        <a class="btn btn-warning disabled">Unavailable &raquo;</a>
+                    }
+                }
+            </td>
+        </tr>
+                    }
 
 </table>
