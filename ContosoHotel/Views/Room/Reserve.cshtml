@@ -9,53 +9,116 @@
 @if (Request.IsAuthenticated)
 {
     var email = User.Identity.GetUserName();
-    <p>@email</p>
-
 
     using (Html.BeginForm())
     {
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>Room</h4>
-            <hr />
+            <h4>Room @Html.ValueFor(model => model.RoomID)</h4>
+            
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             @Html.HiddenFor(model => model.RoomID)
             @Html.HiddenFor(model => model.Price)
+            @Html.HiddenFor(model => model.RoomType)
+            @Html.HiddenFor(model => model.Vacancy)
 
+            
             <div class="form-group">
-                @Html.LabelFor(model => model.RoomType, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.RoomType, "", new { @class = "text-danger" })
-                </div>
+                <table class="col-md-12">
+                    <tr>
+                        <td>
+                            <label class="control-label col-md-2" for="RoomID">Room Number:</label>
+                            <input type="text" class="col-md-0 form-control" value="@Html.ValueFor(model => model.RoomID)" disabled>
+                        </td>
+                    </tr>
+                    <tr class="col-md-12">
+                        <td>
+                            <label class="control-label col-md-2" for="RoomType">Room Type:</label>
+                            <input type="text" class="col-md-10 form-control" value="@Html.ValueFor(model => model.RoomType)" disabled>
+                        </td>
+                    </tr>
+                    <tr class="col-md-12">
+                        <td>
+                            <label class="control-label col-md-2" for="Price">Price:</label>
+                            <input type="text" class="col-md-10 form-control" value="$@Html.ValueFor(model => model.Price)" disabled>
+                        </td>
+                    </tr>
+                    <tr class="col-md-12">
+                        <td>
+                            <label class="control-label col-md-2">Email:</label>
+                            <input type="email" class="col-md-10 form-control" name="email" value="@email" required aria-required="true"/>
+                        </td>
+                    </tr>
+                    <tr class="col-md-12">
+                        <td>
+                            <label class="control-label col-md-2">Phone Number:</label>
+                            <input id ="Number" class="col-md-10 form-control" name="phone" value="" required aria-required="true"/>
+                        </td>
+                    </tr>
+                    <tr class="col-md-12">
+                        <td>
+                            <label class="control-label col-md-2">First Name:</label>
+                            <input type="text" class="col-md-10 form-control" name="firstName" value="" required aria-required="true"/>
+                        </td>
+                    </tr>
+                    <tr class="col-md-12">
+                        <td>
+                            <label class="control-label col-md-2">Last Name:</label>
+                            <input type="text" class="col-md-10 form-control" name="lastName" value="" required aria-required="true"/>
+                        </td>
+                    </tr>
+                    <tr class="col-md-12">
+                        <td>
+                            <label class="control-label col-md-2">Address:</label>
+                            <input type="text" class="col-md-10 form-control" name="address" value="" required aria-required="true"/>
+                        </td>
+                    </tr>
+                    
+                </table>
+                
             </div>
+@*
+        <div class="form-group">
+        @Html.LabelFor(model => model.RoomType, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RoomType, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Vacancy, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.Vacancy)
+                @Html.ValidationMessageFor(model => model.Vacancy, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>*@
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Vacancy, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.Vacancy)
-                        @Html.ValidationMessageFor(model => model.Vacancy, "", new { @class = "text-danger" })
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Reserve" class="btn btn-default" />
                     </div>
                 </div>
             </div>
-
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
     }
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Book")
     </div>
 
     @section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="http://digitalbush.com/wp-content/uploads/2013/01/jquery.maskedinput-1.3.1.min_.js"></script>
+    <script type='text/javascript'>
+    $(function () {
+        //Define your mask
+        $("#Number").mask('(999) 999-9999');
+    });
+    </script>
     }
 
 }
