@@ -17,5 +17,7 @@ namespace ContosoHotel.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
+
+        public System.Data.Entity.DbSet<ContosoHotel.Models.Reservation> Reservations { get; set; }
     }
 }

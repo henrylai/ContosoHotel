@@ -15,6 +15,46 @@ namespace ContosoHotel.Controllers
     {
         private HotelContext db = new HotelContext();
 
+        // GET: Book
+        public ActionResult Book()
+        {
+            return View(db.Rooms.ToList());
+        }
+
+        // GET: Room/Reserve/5
+        public ActionResult Reserve(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Room room = db.Rooms.Find(id);
+            if (room == null)
+            {
+                return HttpNotFound();
+            }
+            return View(room);
+        }
+
+        // POST: Room/Reserve/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Reserve([Bind(Include = "RoomID,RoomType,Vacancy,Price")] Room room)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(room).State = EntityState.Modified;
+                room.Vacancy = false;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(room);
+        }
+
+
+
         // GET: Room
         public ActionResult Index()
         {
@@ -47,7 +87,7 @@ namespace ContosoHotel.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "RoomID,RoomType,Vacancy")] Room room)
+        public ActionResult Create([Bind(Include = "RoomID,RoomType,Vacancy,Price")] Room room)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +119,7 @@ namespace ContosoHotel.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "RoomID,RoomType,Vacancy")] Room room)
+        public ActionResult Edit([Bind(Include = "RoomID,RoomType,Vacancy,Price")] Room room)
         {
             if (ModelState.IsValid)
             {

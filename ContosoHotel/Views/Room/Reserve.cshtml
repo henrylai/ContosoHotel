@@ -1,0 +1,66 @@
+﻿@model ContosoHotel.Models.Room
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Reserve";
+}
+
+<h2>Reserve</h2>
+@if (Request.IsAuthenticated)
+{
+    var email = User.Identity.GetUserName();
+    <p>@email</p>
+
+
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Room</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.RoomID)
+            @Html.HiddenFor(model => model.Price)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoomType, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RoomType, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RoomType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Vacancy, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Vacancy)
+                        @Html.ValidationMessageFor(model => model.Vacancy, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+}
+else
+{
+    <p>Please create an account to book a room!</p>
+}
+
