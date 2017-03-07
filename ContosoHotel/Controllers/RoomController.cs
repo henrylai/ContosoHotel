@@ -24,6 +24,7 @@ namespace ContosoHotel.Controllers
         }
 
         // GET: Room/Reserve/5
+        [Authorize]
         public ActionResult Reserve(int? id)
         {
             if (id == null)

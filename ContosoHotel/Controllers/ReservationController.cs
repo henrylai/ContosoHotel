@@ -29,6 +29,7 @@ namespace ContosoHotel.Controllers
         }
 
         // GET: Reservation
+        [Authorize]
         public ActionResult Index()
         {
             var reservations = db.Reservations.Include(r => r.Guest).Include(r => r.Room);

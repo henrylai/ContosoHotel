@@ -171,3 +171,7 @@ A:\Documents\GitHub\ContosoHotel\ContosoHotel\obj\Debug\ContosoHotel.csproj.Gene
 A:\Documents\GitHub\ContosoHotel\ContosoHotel\obj\Debug\ContosoHotel.dll
 A:\Documents\GitHub\ContosoHotel\ContosoHotel\obj\Debug\ContosoHotel.pdb
 A:\Documents\GitHub\ContosoHotel\ContosoHotel\obj\Debug\ContosoHotel.Migrations.GuestIdentifier.resources
+A:\Documents\GitHub\ContosoHotel\ContosoHotel\bin\Microsoft.AspNet.SignalR.Core.dll
+A:\Documents\GitHub\ContosoHotel\ContosoHotel\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+A:\Documents\GitHub\ContosoHotel\ContosoHotel\bin\Microsoft.AspNet.SignalR.Core.xml
+A:\Documents\GitHub\ContosoHotel\ContosoHotel\bin\Microsoft.AspNet.SignalR.SystemWeb.xml
