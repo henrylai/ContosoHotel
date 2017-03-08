@@ -11,7 +11,15 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Guest.Name)
+            Reservation ID:
+        </dt>
+
+        <dd>
+            <span>1000200</span>@Html.DisplayFor(model => model.ReservationID)
+        </dd>
+
+        <dt>
+            Guest Name:
         </dt>
 
         <dd>
@@ -19,11 +27,51 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Room.RoomType)
+            Address:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guest.Address)
+        </dd>
+
+        <dt>
+            Email:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guest.Email)
+        </dd>
+
+        <dt>
+            Phone:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Guest.Phone)
+        </dd>
+
+        <dt>
+            Room No:
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room.RoomID)
+        </dd>
+
+        <dt>
+            Room Type:
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Room.RoomType)
+        </dd>
+
+        <dt>
+            Room Price:
+        </dt>
+
+        <dd>
+            $@Html.DisplayFor(model => model.Room.Price)
         </dd>
 
     </dl>

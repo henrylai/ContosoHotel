@@ -76,9 +76,10 @@ namespace ContosoHotel.Controllers
 
 
         // GET: Confirm
-        public ActionResult Confirm(string roomID, string roomType, string roomPrice, string guestEmail, 
+        public ActionResult Confirm(string confirmationID, string roomID, string roomType, string roomPrice, string guestEmail, 
                                     string guestPhone, string guestName, string guestAddress)
         {
+            ViewData["confirmationID"] = confirmationID;
             ViewData["roomID"] = roomID;
             ViewData["roomType"] = roomType;
             ViewData["roomPrice"] = roomPrice;

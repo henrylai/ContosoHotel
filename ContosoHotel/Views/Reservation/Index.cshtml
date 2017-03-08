@@ -12,7 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Guest.Identifier)
+            @Html.DisplayNameFor(model => model.ReservationID)
+        </th>
+        <th>
+            GuestID
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Guest.Name)
@@ -31,6 +34,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            <span>1000200</span>@Html.DisplayFor(modelItem => item.ReservationID)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Guest.Identifier)
         </td>

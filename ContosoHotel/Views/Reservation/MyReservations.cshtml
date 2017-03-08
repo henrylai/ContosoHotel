@@ -20,13 +20,16 @@
         <th>
             Room Type
         </th>
+        <th>
+            Price
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.ReservationID)
+            <span>1000200</span>@Html.DisplayFor(modelItem => item.ReservationID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Guest.Name)
@@ -36,6 +39,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Room.RoomType)
+        </td>
+        <td>
+            $@Html.DisplayFor(modelItem => item.Room.Price)
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.ReservationID }) |
